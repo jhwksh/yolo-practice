@@ -7,7 +7,7 @@
 ```
 python -m venv .venv
 .venv\Scripts\activate
-pip install ultralytics
+pip install -r requirements.txt
 python run_yolo.py input/<사진 파일>
 ```
 
@@ -16,6 +16,7 @@ python run_yolo.py input/<사진 파일>
 - 결과: `outputs/yolo/<사진 이름>/`에 결과 이미지(`.jpg`), 박스·점수 JSON, 마스크 PNG, `manifest.json`(입력 파일, 모델·패키지 버전, 설정)
 - 실행 위치와 환경: 내 로컬 PC(Windows 11), Python 3.12.10, ultralytics 8.4.208, CPU만 사용(GPU 없음). 같은 내용이 `manifest.json`의 `run_location`, `versions`에도 기록됩니다.
 - 입력 사진: `input/` 폴더는 저장소에 올리지 않았습니다. 버스 예제는 `curl -L -o input/bus.jpg https://ultralytics.com/images/bus.jpg`로 받을 수 있고, 음식·거울 사진은 개인 촬영본이라 올리지 않았습니다. 대신 결과 이미지에서 원본 위에 그려진 결과를 볼 수 있습니다.
+- Windows에서 처음 실행할 때 `c10.dll` 로드 실패 오류와 함께 "Microsoft Visual C++ Redistributable is not installed"라는 메시지가 나오면 [Microsoft Visual C++ 재배포 가능 패키지(x64)](https://aka.ms/vs/17/release/vc_redist.x64.exe)를 설치한 뒤 다시 실행합니다. 이번 실습에서 실제로 겪은 오류입니다.
 
 ## 사용한 사진
 
@@ -98,9 +99,19 @@ segment 결과를 열어 보니(`segment_conf0.70.jpg`와 `segment_conf0.25_mask
 ## 결과 3. 버스 예제 사진
 
 - 박스 수: detect·segment 모두 0.25와 0.50에서 5개, 0.70에서 4개
-- 점수: bus 0.86, person 0.88 / 0.86 / 0.81 / 0.65
+- 점수(segment 기준): bus 0.86, person 0.88 / 0.86 / 0.81 / 0.65. detect에서는 bus 0.88, person 0.87 / 0.86 / 0.85 / 0.66
 - 0.70에서 사라진 것은 화면 왼쪽 가장자리에서 몸이 잘린 사람(0.65)입니다. 실제로 있는 사람이 사라졌으니 **미탐이 하나 늘어난** 경우입니다.
 - 마스크는 버스와 사람의 윤곽을 따라 칠해졌고, 박스 안에 있던 배경은 빠졌습니다.
+
+**검토 기록: 원본과 대조한 내용** (좌표는 원본 810×1080 픽셀 기준 `[왼쪽, 위, 오른쪽, 아래]`, `outputs/yolo/bus/detect_conf0.25.json`의 값, 모델 출력은 고치지 않음)
+
+| 모델이 낸 결과 | 원본 위치 | 원본에서 본 것 | 판정 | 확인 필요 |
+|---|---|---|---|---|
+| `bus` 0.88 `[0, 230, 803, 751]` | 사진 가운데 | 버스 | 맞음 | 아니오 |
+| `person` 0.87 `[49, 398, 240, 902]` | 왼쪽 앞 | 털 재킷을 입은 사람 | 맞음 | 아니오 |
+| `person` 0.86 `[223, 405, 346, 861]` | 가운데 | 검은 옷을 입은 사람 | 맞음 | 아니오 |
+| `person` 0.85 `[670, 394, 810, 879]` | 오른쪽 가장자리 | 몸이 일부 잘린 사람 | 맞음 | 아니오 |
+| `person` 0.66 `[0, 553, 60, 871]` | 왼쪽 가장자리 | 몸이 잘린 사람 | 맞음 | 예. `conf` 0.70에서 사라져 미탐이 됨 |
 
 ## 정리
 
