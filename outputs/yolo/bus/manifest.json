@@ -1,0 +1,59 @@
+{
+  "created_at": "2026-11-10T23:57:14",
+  "input": "input\\bus.jpg",
+  "imgsz": 640,
+  "device": "cpu",
+  "confs": [
+    0.25,
+    0.5,
+    0.7
+  ],
+  "models": {
+    "detect": "yolo26n.pt",
+    "segment": "yolo26n-seg.pt"
+  },
+  "versions": {
+    "python": "3.12.10",
+    "ultralytics": "8.4.208",
+    "torch": "2.15.0+cpu",
+    "opencv": "5.0.0"
+  },
+  "runs": [
+    {
+      "task": "detect",
+      "weights": "yolo26n.pt",
+      "conf": 0.25,
+      "num_detections": 5
+    },
+    {
+      "task": "detect",
+      "weights": "yolo26n.pt",
+      "conf": 0.5,
+      "num_detections": 5
+    },
+    {
+      "task": "detect",
+      "weights": "yolo26n.pt",
+      "conf": 0.7,
+      "num_detections": 4
+    },
+    {
+      "task": "segment",
+      "weights": "yolo26n-seg.pt",
+      "conf": 0.25,
+      "num_detections": 5
+    },
+    {
+      "task": "segment",
+      "weights": "yolo26n-seg.pt",
+      "conf": 0.5,
+      "num_detections": 5
+    },
+    {
+      "task": "segment",
+      "weights": "yolo26n-seg.pt",
+      "conf": 0.7,
+      "num_detections": 4
+    }
+  ]
+}

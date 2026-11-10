@@ -1,0 +1,68 @@
+[
+  {
+    "class_id": 45,
+    "class_name": "bowl",
+    "confidence": 0.9215,
+    "xyxy": [
+      1350.0,
+      829.6,
+      2523.1,
+      1814.8
+    ]
+  },
+  {
+    "class_id": 45,
+    "class_name": "bowl",
+    "confidence": 0.9011,
+    "xyxy": [
+      1464.1,
+      88.2,
+      2299.4,
+      766.5
+    ]
+  },
+  {
+    "class_id": 43,
+    "class_name": "knife",
+    "confidence": 0.8662,
+    "xyxy": [
+      2587.6,
+      890.9,
+      2992.0,
+      2245.0
+    ]
+  },
+  {
+    "class_id": 42,
+    "class_name": "fork",
+    "confidence": 0.7578,
+    "xyxy": [
+      0.6,
+      951.5,
+      259.1,
+      1580.0
+    ]
+  },
+  {
+    "class_id": 60,
+    "class_name": "dining table",
+    "confidence": 0.7461,
+    "xyxy": [
+      0.0,
+      7.2,
+      2985.8,
+      2992.0
+    ]
+  },
+  {
+    "class_id": 48,
+    "class_name": "sandwich",
+    "confidence": 0.5226,
+    "xyxy": [
+      1759.2,
+      1764.0,
+      2292.6,
+      2312.4
+    ]
+  }
+]
