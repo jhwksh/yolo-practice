@@ -73,6 +73,7 @@ def main(image_path):
         "input": str(image),
         "imgsz": IMGSZ,
         "device": DEVICE,
+        "run_location": "로컬 PC (Windows, CPU만 사용, GPU 없음)",
         "confs": CONFS,
         "models": MODELS,
         "versions": {

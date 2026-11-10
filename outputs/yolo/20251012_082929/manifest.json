@@ -1,8 +1,9 @@
 {
-  "created_at": "2026-11-11T00:27:15",
+  "created_at": "2026-11-11T00:59:18",
   "input": "input\\20251012_082929.jpg",
   "imgsz": 640,
   "device": "cpu",
+  "run_location": "로컬 PC (Windows, CPU만 사용, GPU 없음)",
   "confs": [
     0.25,
     0.5,
